@@ -2491,10 +2491,7 @@ static exprt lower_byte_update(
     exprt zero_extended;
     if(bit_width > update_size_bits)
     {
-      zero_extended = concatenation_exprt{
-        bv_typet{bit_width - update_size_bits}.all_zeros_expr(),
-        value,
-        bv_typet{bit_width}};
+      zero_extended = zero_extend_exprt{value, bv_typet{bit_width}};
 
       if(!is_little_endian)
         to_concatenation_expr(zero_extended)
